@@ -1,0 +1,323 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hyperduce can build 1`] = `
+Object {
+  "actions": Object {
+    "all": [Function],
+    "create": [Function],
+    "destroy": [Function],
+    "get": [Function],
+    "request": [Function],
+    "update": [Function],
+  },
+  "reducer": [Function],
+  "types": Object {
+    "all": Object {
+      "FULFILLED": "PROJECTS_ALL_FULFILLED",
+      "PENDING": "PROJECTS_ALL_PENDING",
+      "REJECTED": "PROJECTS_ALL_REJECTED",
+    },
+    "create": Object {
+      "FULFILLED": "PROJECTS_CREATE_FULFILLED",
+      "PENDING": "PROJECTS_CREATE_PENDING",
+      "REJECTED": "PROJECTS_CREATE_REJECTED",
+    },
+    "destroy": Object {
+      "FULFILLED": "PROJECTS_DESTROY_FULFILLED",
+      "PENDING": "PROJECTS_DESTROY_PENDING",
+      "REJECTED": "PROJECTS_DESTROY_REJECTED",
+    },
+    "get": Object {
+      "FULFILLED": "PROJECTS_GET_FULFILLED",
+      "PENDING": "PROJECTS_GET_PENDING",
+      "REJECTED": "PROJECTS_GET_REJECTED",
+    },
+    "request": Object {
+      "FULFILLED": "PROJECTS_REQUEST_FULFILLED",
+      "PENDING": "PROJECTS_REQUEST_PENDING",
+      "REJECTED": "PROJECTS_REQUEST_REJECTED",
+    },
+    "update": Object {
+      "FULFILLED": "PROJECTS_UPDATE_FULFILLED",
+      "PENDING": "PROJECTS_UPDATE_PENDING",
+      "REJECTED": "PROJECTS_UPDATE_REJECTED",
+    },
+  },
+}
+`;
+
+exports[`hyperduce w/redux: all() -> get(): get merges into all 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": "1",
+        "name": "foobar",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: all() -> get(): get merges into all 2`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "foo": "bar",
+        "id": "2",
+        "name": "baz",
+      },
+      Object {
+        "id": "1",
+        "name": "foobar",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: all() -> get(): get merges into all 3`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": "2",
+        "name": "bar!",
+      },
+      Object {
+        "id": "1",
+        "name": "foobar",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: all() 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": "1",
+        "name": "foobar",
+      },
+      Object {
+        "id": "2",
+        "name": "foobaz",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: all(): full request 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": 1,
+        "name": "filtered hot",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: all(): nonexisting 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": false,
+    "error": Object {
+      "code": 404,
+      "error": [Error: Request failed with status code 404],
+      "message": "Error: Request failed with status code 404",
+    },
+    "flash": null,
+    "isFetching": false,
+    "lastUpdated": null,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: destroy(): nonexisting 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": false,
+    "error": Object {
+      "code": 404,
+      "error": [Error: Request failed with status code 404],
+      "message": "Error: Request failed with status code 404",
+    },
+    "flash": null,
+    "isFetching": false,
+    "lastUpdated": null,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: get() -> update() -> destroy(): destroys existing item 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": 1,
+        "name": "foobar",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: get() -> update() -> destroy(): destroys existing item 2`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": 1,
+        "name": "updated!",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: get() -> update() -> destroy(): destroys existing item 3`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: get(): full request 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": 1,
+        "name": "filtered hot",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: get(): nonexisting 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": false,
+    "error": Object {
+      "code": 404,
+      "error": [Error: Request failed with status code 404],
+      "message": "Error: Request failed with status code 404",
+    },
+    "flash": null,
+    "isFetching": false,
+    "lastUpdated": null,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: request(): GET 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: request(): POST 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: update(): nonexisting 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": false,
+    "error": Object {
+      "code": 404,
+      "error": [Error: Request failed with status code 404],
+      "message": "Error: Request failed with status code 404",
+    },
+    "flash": null,
+    "isFetching": false,
+    "lastUpdated": null,
+  },
+}
+`;
+
+exports[`hyperduce w/redux: update(): updates and places nonexisting 1`] = `
+Object {
+  "projects": Object {
+    "didFetch": true,
+    "error": null,
+    "flash": null,
+    "isFetching": false,
+    "items": Array [
+      Object {
+        "id": "1",
+        "name": "foobar",
+      },
+    ],
+    "lastUpdated": 2017-07-25T19:15:07.199Z,
+  },
+}
+`;

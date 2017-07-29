@@ -1,0 +1,6 @@
+node_modules/
+examples/
+.babelrc
+.eslintrc
+media/
+npm-debug.log

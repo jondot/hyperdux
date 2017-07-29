@@ -1,0 +1,33 @@
+{
+  "name": "hyperduce",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:lib": "babel src --out-dir lib",
+    "build:umd:min": "NODE_ENV=production webpack --display-modules",
+    "build:umd": "NODE_ENV=development webpack --display-modules",
+    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "release": "npm run build && npm publish",
+    "test": "node --harmony-async-await node_modules/.bin/jest",
+    "watch": "node --harmony-async-await node_modules/.bin/jest --watch"
+  },
+  "peerDependencies": {
+    "whatwg-fetch": "^2.0.3"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "lodash": "^4.17.4",
+    "updeep": "^1.0.0",
+    "url-join": "^2.0.2"
+  },
+  "devDependencies": {
+    "goddamn-javascript-config": "^1.0.4",
+    "jest": "^20.0.4",
+    "mockdate": "^2.0.1",
+    "nock": "^9.0.14",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "webpack": "^3.3.0"
+  }
+}
