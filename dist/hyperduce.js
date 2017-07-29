@@ -4035,16 +4035,39 @@ var _extends2 = __webpack_require__(114);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _updeep = __webpack_require__(133);
 
-var U = __webpack_require__(133);
-var unionBy = __webpack_require__(249);
-var reject = __webpack_require__(31);
-var castArray = __webpack_require__(261);
-var get = __webpack_require__(82);
-var isString = __webpack_require__(262);
-var axios = __webpack_require__(263);
-var urljoin = __webpack_require__(282);
+var _updeep2 = _interopRequireDefault(_updeep);
+
+var _unionBy = __webpack_require__(249);
+
+var _unionBy2 = _interopRequireDefault(_unionBy);
+
+var _reject2 = __webpack_require__(31);
+
+var _reject3 = _interopRequireDefault(_reject2);
+
+var _castArray = __webpack_require__(261);
+
+var _castArray2 = _interopRequireDefault(_castArray);
+
+var _get = __webpack_require__(82);
+
+var _get2 = _interopRequireDefault(_get);
+
+var _isString = __webpack_require__(262);
+
+var _isString2 = _interopRequireDefault(_isString);
+
+var _axios = __webpack_require__(263);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _urlJoin = __webpack_require__(282);
+
+var _urlJoin2 = _interopRequireDefault(_urlJoin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var hyperduce = function hyperduce(_ref) {
   var resource = _ref.resource,
@@ -4070,9 +4093,9 @@ var axiosAdapter = function axiosAdapter(verbOpts, data) {
   var requestOpts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { fullRequest: false };
 
   if (requestOpts.fullRequest) {
-    return axios((0, _extends3.default)({}, verbOpts, data));
+    return (0, _axios2.default)((0, _extends3.default)({}, verbOpts, data));
   }
-  return axios((0, _extends3.default)({}, verbOpts, { data: data }));
+  return (0, _axios2.default)((0, _extends3.default)({}, verbOpts, { data: data }));
 };
 
 var restAdapter = function restAdapter(url, identity, adapter, adapterOpts) {
@@ -4094,7 +4117,7 @@ var restAdapter = function restAdapter(url, identity, adapter, adapterOpts) {
       return adapter((0, _extends3.default)({}, adapterOpts, { method: 'get', url: url + '/' + data[identity] }), data, requestOpts);
     },
     request: function request(path, data, requestOpts) {
-      return adapter((0, _extends3.default)({}, adapterOpts, { url: urljoin(url, path) }), data, {
+      return adapter((0, _extends3.default)({}, adapterOpts, { url: (0, _urlJoin2.default)(url, path) }), data, {
         fullRequest: true
       });
     }
@@ -4121,7 +4144,7 @@ var network = function network(adapter, resource, kind) {
     return function (dispatch) {
       // if first argument is a string, skip it and get the
       // next one.
-      var data = isString(args[0]) ? args[1] : args[0];
+      var data = (0, _isString2.default)(args[0]) ? args[1] : args[0];
       var payload = data || {};
       dispatch({ type: type.PENDING, payload: payload });
       return req.apply(undefined, args).then(function (response) {
@@ -4182,7 +4205,7 @@ var createReducer = function createReducer(resource, identity) {
         isFetching: false,
         error: {
           message: action.payload.toString(),
-          code: get(action.payload, 'response.status', null),
+          code: (0, _get2.default)(action.payload, 'response.status', null),
           error: action.payload
         },
         flash: null
@@ -4204,13 +4227,13 @@ var createReducer = function createReducer(resource, identity) {
         case 'UPDATE':
         case 'GET':
         case 'ALL':
-          return U({ items: function items(_items) {
-              return unionBy(castArray(payload), _items, identity);
+          return (0, _updeep2.default)({ items: function items(_items) {
+              return (0, _unionBy2.default)((0, _castArray2.default)(payload), _items, identity);
             } }, fulfilledState);
         case 'DESTROY':
-          return U({
+          return (0, _updeep2.default)({
             items: function items(_items2) {
-              return reject(_items2, (0, _defineProperty3.default)({}, identity, action.causer[identity]));
+              return (0, _reject3.default)(_items2, (0, _defineProperty3.default)({}, identity, action.causer[identity]));
             }
           }, fulfilledState);
         case 'REQUEST':
