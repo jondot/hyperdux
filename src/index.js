@@ -88,9 +88,10 @@ const network = (adapter, resource, kind) => {
           payload: response.data
         })
       )
-      .catch(err =>
+      .catch(err => {
         dispatch({ type: type.REJECTED, causer: payload, payload: err })
-      )
+        throw err
+      })
   }
 }
 
@@ -125,7 +126,6 @@ const initialState = {
 const createReducer = (resource, identity) => {
   const RESOURCE = resource.toUpperCase()
   return (state = initialState, action) => {
-    console.log('reducer', action)
     if (action.type.match(`${RESOURCE}_[A-Z]+_PENDING`)) {
       // consider using redux-actions for [create]:{}
       return { ...state, isFetching: true, error: null, flash: null }

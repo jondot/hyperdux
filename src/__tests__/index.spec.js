@@ -86,29 +86,45 @@ describe('hyperduce', () => {
   it('w/redux: update(): nonexisting', async () => {
     nock('http://example.com/').put('/projects/1', { id: 1 }).reply(404, {})
     const { store, actions } = createSlimeStore()
-    await store.dispatch(actions.update({ id: 1 }))
-    expect(store.getState()).toMatchSnapshot()
+    try {
+      await store.dispatch(actions.update({ id: 1 }))
+      expect(store.getState()).toMatchSnapshot()
+    } catch (err) {
+      expect(err.toString()).toMatch(/Request failed with status code 404/)
+    }
   })
 
   it('w/redux: all(): nonexisting', async () => {
     nock('http://example.com/').get('/projects').reply(404, {})
     const { store, actions } = createSlimeStore()
-    await store.dispatch(actions.all())
-    expect(store.getState()).toMatchSnapshot()
+    try {
+      await store.dispatch(actions.all())
+      expect(store.getState()).toMatchSnapshot()
+    } catch (err) {
+      expect(err.toString()).toMatch(/Request failed with status code 404/)
+    }
   })
 
   it('w/redux: get(): nonexisting', async () => {
     nock('http://example.com/').get('/projects/10').reply(404, {})
     const { store, actions } = createSlimeStore()
-    await store.dispatch(actions.get({ id: 10 }))
-    expect(store.getState()).toMatchSnapshot()
+    try {
+      await store.dispatch(actions.get({ id: 10 }))
+      expect(store.getState()).toMatchSnapshot()
+    } catch (err) {
+      expect(err.toString()).toMatch(/Request failed with status code 404/)
+    }
   })
 
   it('w/redux: destroy(): nonexisting', async () => {
     nock('http://example.com/').delete('/projects/1', { id: 1 }).reply(404, {})
     const { store, actions } = createSlimeStore()
-    await store.dispatch(actions.destroy({ id: 1 }))
-    expect(store.getState()).toMatchSnapshot()
+    try {
+      await store.dispatch(actions.destroy({ id: 1 }))
+      expect(store.getState()).toMatchSnapshot()
+    } catch (err) {
+      expect(err.toString()).toMatch(/Request failed with status code 404/)
+    }
   })
 
   it('w/redux: update(): updates and places nonexisting', async () => {

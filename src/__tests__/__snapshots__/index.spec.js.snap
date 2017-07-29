@@ -149,38 +149,6 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: all(): nonexisting 1`] = `
-Object {
-  "projects": Object {
-    "didFetch": false,
-    "error": Object {
-      "code": 404,
-      "error": [Error: Request failed with status code 404],
-      "message": "Error: Request failed with status code 404",
-    },
-    "flash": null,
-    "isFetching": false,
-    "lastUpdated": null,
-  },
-}
-`;
-
-exports[`hyperduce w/redux: destroy(): nonexisting 1`] = `
-Object {
-  "projects": Object {
-    "didFetch": false,
-    "error": Object {
-      "code": 404,
-      "error": [Error: Request failed with status code 404],
-      "message": "Error: Request failed with status code 404",
-    },
-    "flash": null,
-    "isFetching": false,
-    "lastUpdated": null,
-  },
-}
-`;
-
 exports[`hyperduce w/redux: get() -> update() -> destroy(): destroys existing item 1`] = `
 Object {
   "projects": Object {
@@ -248,22 +216,6 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: get(): nonexisting 1`] = `
-Object {
-  "projects": Object {
-    "didFetch": false,
-    "error": Object {
-      "code": 404,
-      "error": [Error: Request failed with status code 404],
-      "message": "Error: Request failed with status code 404",
-    },
-    "flash": null,
-    "isFetching": false,
-    "lastUpdated": null,
-  },
-}
-`;
-
 exports[`hyperduce w/redux: request(): GET 1`] = `
 Object {
   "projects": Object {
@@ -284,22 +236,6 @@ Object {
     "flash": null,
     "isFetching": false,
     "lastUpdated": 2017-07-25T19:15:07.199Z,
-  },
-}
-`;
-
-exports[`hyperduce w/redux: update(): nonexisting 1`] = `
-Object {
-  "projects": Object {
-    "didFetch": false,
-    "error": Object {
-      "code": 404,
-      "error": [Error: Request failed with status code 404],
-      "message": "Error: Request failed with status code 404",
-    },
-    "flash": null,
-    "isFetching": false,
-    "lastUpdated": null,
   },
 }
 `;
