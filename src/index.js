@@ -2,6 +2,7 @@ import U from 'updeep'
 import unionBy from 'lodash/unionBy'
 import reject from 'lodash/reject'
 import castArray from 'lodash/castArray'
+import isFunction from 'lodash/isFunction'
 import get from 'lodash/get'
 import isString from 'lodash/isString'
 import axios from 'axios'
@@ -31,34 +32,59 @@ const axiosAdapter = (verbOpts, data, requestOpts = { fullRequest: false }) => {
 }
 
 const restAdapter = (url, identity, adapter, adapterOpts) => {
+  const jitOpts = isFunction(adapterOpts)
   // consider returning response.data directly from here
   return {
     create: (data, requestOpts) =>
-      adapter({ ...adapterOpts, method: 'post', url }, data, requestOpts),
+      adapter(
+        { ...(jitOpts ? adapterOpts() : adapterOpts), method: 'post', url },
+        data,
+        requestOpts
+      ),
     all: (data, requestOpts) =>
-      adapter({ ...adapterOpts, method: 'get', url }, data, requestOpts),
+      adapter(
+        { ...(jitOpts ? adapterOpts() : adapterOpts), method: 'get', url },
+        data,
+        requestOpts
+      ),
     destroy: (data, requestOpts) =>
       adapter(
-        { ...adapterOpts, method: 'delete', url: `${url}/${data[identity]}` },
+        {
+          ...(jitOpts ? adapterOpts() : adapterOpts),
+          method: 'delete',
+          url: `${url}/${data[identity]}`
+        },
         data,
         requestOpts
       ),
     update: (data, requestOpts) =>
       adapter(
-        { ...adapterOpts, method: 'put', url: `${url}/${data[identity]}` },
+        {
+          ...(jitOpts ? adapterOpts() : adapterOpts),
+          method: 'put',
+          url: `${url}/${data[identity]}`
+        },
         data,
         requestOpts
       ),
     get: (data, requestOpts) =>
       adapter(
-        { ...adapterOpts, method: 'get', url: `${url}/${data[identity]}` },
+        {
+          ...(jitOpts ? adapterOpts() : adapterOpts),
+          method: 'get',
+          url: `${url}/${data[identity]}`
+        },
         data,
         requestOpts
       ),
     request: (path, data, requestOpts) =>
-      adapter({ ...adapterOpts, url: urljoin(url, path) }, data, {
-        fullRequest: true
-      })
+      adapter(
+        { ...(jitOpts ? adapterOpts() : adapterOpts), url: urljoin(url, path) },
+        data,
+        {
+          fullRequest: true
+        }
+      )
   }
 }
 

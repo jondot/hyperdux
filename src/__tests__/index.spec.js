@@ -6,10 +6,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
 import MockDate from 'mockdate'
 
-const createSlimeStore = () => {
+const createSlimeStore = (request = {}) => {
   const { actions, reducer } = hyperduce({
     resource: 'projects',
-    url: 'http://example.com/projects'
+    url: 'http://example.com/projects',
+    request
   })
   const store = createStore(
     combineReducers({ projects: reducer }),
@@ -192,5 +193,29 @@ describe('hyperduce', () => {
     expect(store.getState()).toMatchSnapshot()
     await store.dispatch(actions.get({ id: 2 }))
     expect(store.getState()).toMatchSnapshot()
+  })
+  it('adapter opts', async () => {
+    nock('http://example.com/', {
+      reqheaders: { 'content-type': 'foo/bar' }
+    })
+      .get('/projects')
+      .reply(200, [{ id: '1', name: 'foobar' }])
+
+    const request = { headers: { 'content-type': 'foo/bar' } }
+
+    const { store, actions } = createSlimeStore(request)
+    await store.dispatch(actions.all())
+
+    nock('http://example.com/', {
+      reqheaders: { token: 'boo!' }
+    })
+      .get('/projects/1')
+      .reply(200, { id: '1', name: 'foobar' })
+
+    const requestfn = () => ({
+      headers: { token: 'boo!' }
+    })
+    const { store: store2, actions: actions2 } = createSlimeStore(requestfn)
+    await store2.dispatch(actions2.get({ id: 1 }))
   })
 })
