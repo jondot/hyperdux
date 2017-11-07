@@ -15,9 +15,9 @@ const hyperduce = ({
   adapter = axiosAdapter,
   request = {}
 }) => {
-  const selectedAdapter = restAdapter(url, identity, adapter, request)
+  const networkActions = buildRestActions(url, identity, adapter, request)
   return {
-    actions: createActions(selectedAdapter, resource),
+    actions: createActions(networkActions, resource),
     reducer: createReducer(resource, identity),
     types: createActionTypes(resource)
   }
@@ -31,7 +31,7 @@ const axiosAdapter = (verbOpts, data, requestOpts = { fullRequest: false }) => {
   return axios({ ...verbOpts, data })
 }
 
-const restAdapter = (url, identity, adapter, adapterOpts) => {
+const buildRestActions = (url, identity, adapter, adapterOpts) => {
   const jitOpts = isFunction(adapterOpts)
   // consider returning response.data directly from here
   return {
