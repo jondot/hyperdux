@@ -9,8 +9,8 @@
     "build:umd": "NODE_ENV=development webpack --display-modules",
     "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
     "release": "npm run build && npm publish",
-    "test": "node --harmony-async-await node_modules/.bin/jest",
-    "watch": "node --harmony-async-await node_modules/.bin/jest --watch"
+    "test": "node node_modules/.bin/jest",
+    "watch": "node node_modules/.bin/jest --watch"
   },
   "peerDependencies": {
     "whatwg-fetch": "^2.0.3"
