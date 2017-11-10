@@ -8,7 +8,7 @@ import isString from 'lodash/isString'
 import axios from 'axios'
 import urljoin from 'url-join'
 
-const hyperduce = ({
+const hyperdux = ({
   resource,
   url,
   identity = 'id',
@@ -22,7 +22,7 @@ const hyperduce = ({
     types: createActionTypes(resource)
   }
 }
-export default hyperduce
+export default hyperdux
 
 const axiosAdapter = (verbOpts, data, requestOpts = { fullRequest: false }) => {
   if (requestOpts.fullRequest) {

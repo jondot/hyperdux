@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`hyperduce can build 1`] = `
+exports[`hyperdux can build 1`] = `
 Object {
   "actions": Object {
     "all": [Function],
@@ -46,7 +46,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: all() -> get(): get merges into all 1`] = `
+exports[`hyperdux w/redux: all() -> get(): get merges into all 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -64,7 +64,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: all() -> get(): get merges into all 2`] = `
+exports[`hyperdux w/redux: all() -> get(): get merges into all 2`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -87,7 +87,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: all() -> get(): get merges into all 3`] = `
+exports[`hyperdux w/redux: all() -> get(): get merges into all 3`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -109,7 +109,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: all() 1`] = `
+exports[`hyperdux w/redux: all() 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -131,7 +131,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: all(): full request 1`] = `
+exports[`hyperdux w/redux: all(): full request 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -149,7 +149,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: get() -> update() -> destroy(): destroys existing item 1`] = `
+exports[`hyperdux w/redux: get() -> update() -> destroy(): destroys existing item 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -167,7 +167,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: get() -> update() -> destroy(): destroys existing item 2`] = `
+exports[`hyperdux w/redux: get() -> update() -> destroy(): destroys existing item 2`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -185,7 +185,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: get() -> update() -> destroy(): destroys existing item 3`] = `
+exports[`hyperdux w/redux: get() -> update() -> destroy(): destroys existing item 3`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -198,7 +198,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: get(): full request 1`] = `
+exports[`hyperdux w/redux: get(): full request 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -216,7 +216,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: request(): GET 1`] = `
+exports[`hyperdux w/redux: request(): GET 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -228,7 +228,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: request(): POST 1`] = `
+exports[`hyperdux w/redux: request(): POST 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,
@@ -240,7 +240,7 @@ Object {
 }
 `;
 
-exports[`hyperduce w/redux: update(): updates and places nonexisting 1`] = `
+exports[`hyperdux w/redux: update(): updates and places nonexisting 1`] = `
 Object {
   "projects": Object {
     "didFetch": true,

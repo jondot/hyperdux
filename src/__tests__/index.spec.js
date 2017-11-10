@@ -1,13 +1,13 @@
 import axios from 'axios'
 import httpAdapter from 'axios/lib/adapters/http'
-import hyperduce from '../index'
+import hyperdux from '../index'
 import nock from 'nock'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
 import MockDate from 'mockdate'
 
 const createSlimeStore = (request = {}) => {
-  const { actions, reducer } = hyperduce({
+  const { actions, reducer } = hyperdux({
     resource: 'projects',
     url: 'http://example.com/projects',
     request
@@ -20,7 +20,7 @@ const createSlimeStore = (request = {}) => {
 }
 
 axios.defaults.adapter = httpAdapter
-describe('hyperduce', () => {
+describe('hyperdux', () => {
   beforeEach(() => {
     MockDate.set(new Date(1501010107199))
   })
@@ -30,7 +30,7 @@ describe('hyperduce', () => {
     expect(done).toBe(true)
   })
   it('can build', async () => {
-    const projects = hyperduce({
+    const projects = hyperdux({
       resource: 'projects',
       url: 'http://example.com/projects'
     })
@@ -85,7 +85,9 @@ describe('hyperduce', () => {
   })
 
   it('w/redux: update(): nonexisting', async () => {
-    nock('http://example.com/').put('/projects/1', { id: 1 }).reply(404, {})
+    nock('http://example.com/')
+      .put('/projects/1', { id: 1 })
+      .reply(404, {})
     const { store, actions } = createSlimeStore()
     try {
       await store.dispatch(actions.update({ id: 1 }))
@@ -96,7 +98,9 @@ describe('hyperduce', () => {
   })
 
   it('w/redux: all(): nonexisting', async () => {
-    nock('http://example.com/').get('/projects').reply(404, {})
+    nock('http://example.com/')
+      .get('/projects')
+      .reply(404, {})
     const { store, actions } = createSlimeStore()
     try {
       await store.dispatch(actions.all())
@@ -107,7 +111,9 @@ describe('hyperduce', () => {
   })
 
   it('w/redux: get(): nonexisting', async () => {
-    nock('http://example.com/').get('/projects/10').reply(404, {})
+    nock('http://example.com/')
+      .get('/projects/10')
+      .reply(404, {})
     const { store, actions } = createSlimeStore()
     try {
       await store.dispatch(actions.get({ id: 10 }))
@@ -118,7 +124,9 @@ describe('hyperduce', () => {
   })
 
   it('w/redux: destroy(): nonexisting', async () => {
-    nock('http://example.com/').delete('/projects/1', { id: 1 }).reply(404, {})
+    nock('http://example.com/')
+      .delete('/projects/1', { id: 1 })
+      .reply(404, {})
     const { store, actions } = createSlimeStore()
     try {
       await store.dispatch(actions.destroy({ id: 1 }))
@@ -152,9 +160,11 @@ describe('hyperduce', () => {
     nock('http://example.com/')
       .put('/projects/1', { id: 1, name: 'updated!' })
       .reply(200, { id: 1, name: 'updated!' })
-    nock('http://example.com/').delete('/projects/1', { id: 1 }).reply(200, {})
+    nock('http://example.com/')
+      .delete('/projects/1', { id: 1 })
+      .reply(200, {})
 
-    const { actions, reducer } = hyperduce({
+    const { actions, reducer } = hyperdux({
       resource: 'projects',
       url: 'http://example.com/projects'
     })
